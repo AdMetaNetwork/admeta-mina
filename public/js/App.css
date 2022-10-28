@@ -1,0 +1,8 @@
+/* src/styles/globals.module.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.add {
+  font-weight: bolder;
+  color: aqua;
+}
