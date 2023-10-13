@@ -1,0 +1,1 @@
+export type Page = 'dashboard' | 'deploy' | 'zk proof' | 'connect'

@@ -2,26 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #fff;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: RRegular, serif;
+  min-width: 1280px;
+}
+
+@font-face {
+  font-family: RLight;
+  src: url(../../public/fonts/Rajdhani-Light.ttf);
+}
+
+@font-face {
+  font-family: RRegular;
+  src: url(../../public/fonts/Rajdhani-Regular.ttf);
+}
+
+@font-face {
+  font-family: RMedium;
+  src: url(../../public/fonts/Rajdhani-Medium.ttf);
+}
+
+@font-face {
+  font-family: RBold;
+  src: url(../../public/fonts/Rajdhani-Bold.ttf);
+}
+@font-face {
+  font-family: RSemiBold;
+  src: url(../../public/fonts/Rajdhani-SemiBold.ttf);
+}
+
+/* light 300*/
+.text-r-light {
+  font-family: RLight, serif;
+}
+
+/* normal 400*/
+.text-r-regular {
+  font-family: RRegular, serif;
+}
+
+/* medium 500*/
+.text-r-medium {
+  font-family: RMedium, serif;
+}
+
+/* semi bold 600*/
+.text-r-semi-bold {
+  font-family: RSemiBold, serif;
+}
+
+/* bold 700*/
+.text-r-bold {
+  font-family: RBold, serif;
 }
