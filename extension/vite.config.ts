@@ -2,9 +2,13 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import webExtension, { readJsonFile } from "vite-plugin-web-extension";
 import path from "node:path";
+import ViteTsconfigPaths from 'vite-tsconfig-paths';
 
 function generateManifest() {
-  const manifest = readJsonFile("src/manifest.json");
+  const args = process.argv;
+
+  const manifest = args[4] === '--firefox' ? readJsonFile("src/manifest/manifest-firefox.json") : readJsonFile("src/manifest/manifest-chrome.json");
+
   const pkg = readJsonFile("package.json");
   return {
     name: pkg.name,
@@ -21,6 +25,7 @@ export default defineConfig({
     webExtension({
       manifest: generateManifest,
     }),
+    ViteTsconfigPaths()
   ],
   resolve: {
     alias: {

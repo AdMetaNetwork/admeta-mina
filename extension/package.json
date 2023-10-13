@@ -1,24 +1,39 @@
 {
-  "name": "extension",
+  "name": "admeta-x-mina",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "run-s clean && tsc && vite build",
+    "clean": "shx rm -rf dist",
+    "run:chromium": "web-ext run -t chromium --source-dir dist",
+    "build:firefox": "run-s clean && tsc && vite build -- --firefox",
+    "run:firefox": "web-ext run -t firefox-desktop --source-dir dist"
   },
   "dependencies": {
+    "echarts": "^5.4.3",
+    "echarts-for-react": "^3.0.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-jazzicon": "^1.0.4",
+    "recharts": "^2.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@types/webextension-polyfill": "^0.10.0",
     "@vitejs/plugin-react-swc": "^3.2.0",
+    "autoprefixer": "^10.4.16",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.31",
+    "shx": "^0.3.4",
+    "tailwindcss": "^3.3.3",
     "typescript": "^4.9.3",
     "vite": "^4.1.4",
     "vite-plugin-web-extension": "^3.0.1",
+    "vite-tsconfig-paths": "^4.2.1",
+    "web-ext": "^7.8.0",
     "webextension-polyfill": "^0.10.0"
   }
 }

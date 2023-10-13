@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
-import "./Popup.css";
+import Header from '@/components/common/Header';
+import Account from '@/components/common/Account';
+import Score from '@/components/common/Score';
+import Chart from '@/components/common/Chart';
 
 export default function() {
   useEffect(() => {
@@ -8,11 +11,10 @@ export default function() {
 
   return (
     <div>
-      <img src="/icon-with-shadow.svg" />
-      <h1>vite-plugin-web-extension</h1>
-      <p>
-        Template: <code>react-ts</code>
-      </p>
+      <Header />
+      <Account />
+      <Chart />
+      <Score />
     </div>
   )
 }

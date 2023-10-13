@@ -20,6 +20,10 @@ export default function Dashboard() {
             <div className="ml-2 text-[30px] text-primary-600 text-r-semi-bold">10</div>
           </div>
         </div>
+        <div className="mb-10">
+          <div className="text-[18px] mb-2">Your Personal Portrait</div>
+          <div>graph</div>
+        </div>
         <div>
           <div className="text-[18px] mb-2">Current Single Level</div>
           <div className="flex items-center mb-4">
