@@ -6,6 +6,7 @@ import { useModal, ConnectKitButton } from 'connectkit';
 import { useAccount, useNetwork } from "wagmi";
 import { sepolia } from 'wagmi/chains'
 import { useRouter } from "next/router";
+import * as U from '@/utils'
 
 export default function Home() {
 
@@ -58,6 +59,7 @@ export default function Home() {
               <Button
                 label="Go Deploy"
                 handleClick={() => {
+                  U.Messager.sendMessageToContent(U.C.ADMETA_MSG_ACCOUNT, { EVMAddress, minaAddress })
                   router.push('/deploy')
                 }}
               />

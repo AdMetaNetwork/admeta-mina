@@ -1,20 +1,26 @@
-import { useEffect } from 'react';
-import Header from '@/components/common/Header';
-import Account from '@/components/common/Account';
-import Score from '@/components/common/Score';
-import Chart from '@/components/common/Chart';
+import { useEffect, useState } from 'react';
+import Home from '@/components/home'
+import Start from '@/components/start'
+import browser from 'webextension-polyfill';
 
-export default function() {
+export default function () {
+  const [agree, setAgree] = useState(0)
+
   useEffect(() => {
-    console.log("Hello from the popup!");
+    browser.storage.local.get(['agree']).then(({ agree }) => {
+      setAgree(agree)
+    });
   }, []);
 
   return (
     <div>
-      <Header />
-      <Account />
-      <Chart />
-      <Score />
+      {
+        agree === 0
+          ?
+          <Start handleAgree={() => setAgree(1)} />
+          :
+          <Home />
+      }
     </div>
   )
 }

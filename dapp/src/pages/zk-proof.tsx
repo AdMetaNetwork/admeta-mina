@@ -2,6 +2,7 @@ import Base from "@/components/common/Base"
 import Button from "@/components/ui/BaseButton"
 import { useContext, useEffect } from 'react'
 import BaseCtx from "@/utils/context"
+import * as U from '@/utils'
 
 export default function SyncData() {
 
@@ -20,7 +21,14 @@ export default function SyncData() {
           </div>
           <Button
             label="Load Data"
-            handleClick={() => { }}
+            handleClick={() => { 
+              U.Messager.sendMessageToContent(U.C.ADMETA_MSG_SYNC_DATA, { msg: 'load data' })
+              window.addEventListener("message", function (msg) {
+                if (msg.data.type === U.C.ADMETA_MSG_SYNC_DATA_BACK) {
+                  console.log('bnasks--->>>', msg)
+                }
+              })
+            }}
           />
         </div>
         

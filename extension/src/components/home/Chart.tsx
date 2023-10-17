@@ -1,7 +1,11 @@
 import { FC, useState } from 'react'
 import ReactEcharts from 'echarts-for-react';
+import * as U from '@/utils'
 
 const MyEchartsComponent = () => {
+
+
+
   const getOption = () => {
     return {
       series: [
@@ -32,13 +36,7 @@ const MyEchartsComponent = () => {
           labelLine: {
             show: false
           },
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
-          ]
+          data: U.W.default.categories.map(item => ({ name: item, value: Math.floor(Math.random() * 1000) }))
         }
       ]
     };
@@ -49,7 +47,6 @@ const MyEchartsComponent = () => {
 
 
 const Chart: FC = () => {
-
 
   return (
     <div className='w-full px-2'>
