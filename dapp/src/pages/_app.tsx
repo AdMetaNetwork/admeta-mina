@@ -27,11 +27,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const [minaAddress, setMinaAddress] = useState('')
   const [EVMAddress, setEVMAddress] = useState('')
+  const [deployMinaAddress, setDeployMinaAddress] = useState('')
 
   return (
     <WagmiConfig config={config}>
       <ConnectKitProvider>
-        <BaseCtx.Provider value={{ minaAddress, setMinaAddress, EVMAddress, setEVMAddress }}>
+        <BaseCtx.Provider value={{ minaAddress, setMinaAddress, EVMAddress, setEVMAddress, deployMinaAddress, setDeployMinaAddress }}>
           <Component {...pageProps} />
         </BaseCtx.Provider>
       </ConnectKitProvider>

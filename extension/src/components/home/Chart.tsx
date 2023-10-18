@@ -3,9 +3,7 @@ import ReactEcharts from 'echarts-for-react';
 import * as U from '@/utils'
 
 const MyEchartsComponent = () => {
-
-
-
+  
   const getOption = () => {
     return {
       series: [

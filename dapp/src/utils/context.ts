@@ -5,11 +5,14 @@ interface BaseData {
   setMinaAddress?: (v: string) => void,
   EVMAddress?: string,
   setEVMAddress?: (v: string) => void,
+  deployMinaAddress?: string,
+  setDeployMinaAddress?: (v: string) => void,
 }
 
 const initialState: BaseData = {
   minaAddress: '',
   EVMAddress: '',
+  deployMinaAddress: '',
 }
 
 

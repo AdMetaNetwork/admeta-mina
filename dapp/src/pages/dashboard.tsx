@@ -1,6 +1,10 @@
 import Base from "@/components/common/Base"
+import ReactEcharts from 'echarts-for-react';
+import * as U from '@/utils'
 
 export default function Dashboard() {
+
+
 
   return (
     <Base page="dashboard">
@@ -22,7 +26,7 @@ export default function Dashboard() {
         </div>
         <div className="mb-10">
           <div className="text-[18px] mb-2">Your Personal Portrait</div>
-          <div>graph</div>
+          <MyEchartsComponent />
         </div>
         <div>
           <div className="text-[18px] mb-2">Current Single Level</div>
@@ -58,3 +62,45 @@ export default function Dashboard() {
     </Base>
   )
 }
+
+
+const MyEchartsComponent = () => {
+  
+  const getOption = () => {
+    return {
+      series: [
+        {
+          name: 'Access From',
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
+          },
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 14,
+              fontFamily: 'RMedium, serif',
+              formatter: (params: any) => {
+                return `${params.name}-${params.value}`;
+              }
+            },
+          },
+          labelLine: {
+            show: false
+          },
+          data: U.WHITE_LIST.categories.map(item => ({ name: item, value: Math.floor(Math.random() * 1000) }))
+        }
+      ]
+    };
+  };
+
+  return <ReactEcharts style={{ width: 300, height: 300 }} option={getOption()} />;
+};

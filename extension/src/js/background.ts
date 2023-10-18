@@ -30,6 +30,7 @@ class Background {
 
     // Listen for tab update
     this.listenTabUpdate();
+
   }
 
   listenInstall() {
@@ -91,7 +92,8 @@ class Background {
       case U.C.ADMETA_MSG_SYNC_DATA:
         const tabid = await U.H.goOriginId()
         if (tabid) {
-          U.Messenger.sendMessageToContentScript(tabid, U.C.ADMETA_MSG_SYNC_DATA_BACK, { msg: 'yes you have' })
+          const { score } = await browser.storage.local.get(['score'])
+          U.Messenger.sendMessageToContentScript(tabid, U.C.ADMETA_MSG_SYNC_DATA_BACK, score)
         }
         break;
 

@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import webExtension, { readJsonFile } from "vite-plugin-web-extension";
 import path from "node:path";
 import ViteTsconfigPaths from 'vite-tsconfig-paths';
+import topLevelAwait from 'vite-plugin-top-level-await';
 
 function generateManifest() {
   const args = process.argv;
@@ -25,7 +26,8 @@ export default defineConfig({
     webExtension({
       manifest: generateManifest,
     }),
-    ViteTsconfigPaths()
+    ViteTsconfigPaths(),
+    topLevelAwait()
   ],
   resolve: {
     alias: {

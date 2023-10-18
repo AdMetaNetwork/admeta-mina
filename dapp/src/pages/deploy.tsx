@@ -1,11 +1,15 @@
 import Base from "@/components/common/Base"
 import Button from "@/components/ui/BaseButton"
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import BaseCtx from "@/utils/context"
+import { PrivateKey, Mina, PublicKey, fetchAccount } from 'o1js'
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 export default function Deploy() {
+  const [deployPrivateKey, setDeployPrivateKey] = useState('')
+  const [deploy_address,] = useLocalStorage<string>('deploy_address', '');
 
-  const { setEVMAddress, setMinaAddress, EVMAddress, minaAddress } = useContext(BaseCtx)
+  const { setDeployMinaAddress, deployMinaAddress } = useContext(BaseCtx)
 
   return (
     <Base page="deploy">
@@ -18,9 +22,36 @@ export default function Deploy() {
             </div>
             <div>Generate mina deploy address</div>
           </div>
+          {
+            deployMinaAddress
+            &&
+            <div className="mb-2 flex flex-wrap items-center">
+              <div className="px-4 py-2 text-[14px] bg-gray-200 rounded text-r-medium mr-1">Publick Key {deployMinaAddress}</div>
+              {
+                deployPrivateKey
+                &&
+                <div className="mb-2 flex flex-wrap items-center">
+                  <div className="px-4 py-2 text-[14px] bg-gray-200 rounded text-r-medium mr-1">Private Key {deployPrivateKey}</div>
+                  <div className="text-[12px] text-primary-600 text-r-medium mr-1">* The deployed PrivateKey will not be stored within the program and must be manually copied to a secure environment by the user.</div>
+                </div>
+              }
+            </div>
+          }
           <Button
             label="Generate"
-            handleClick={() => { }}
+            handleClick={async () => {
+              if (!deploy_address) {
+                const zkAppPrivateKey = PrivateKey.random();
+                const zkAppAddress = zkAppPrivateKey.toPublicKey();
+                localStorage.setItem('deploy_address', zkAppAddress.toBase58())
+                // localStorage.setItem('deploy_address2', zkAppPrivateKey.toBase58())
+                setDeployMinaAddress!(zkAppAddress.toBase58())
+                setDeployPrivateKey(zkAppPrivateKey.toBase58())
+              } else {
+                setDeployMinaAddress!(deploy_address)
+              }
+
+            }}
           />
         </div>
 
@@ -33,7 +64,9 @@ export default function Deploy() {
           </div>
           <Button
             label="Go Faucet"
-            handleClick={() => { }}
+            handleClick={() => {
+              window.open(`https://faucet.minaprotocol.com/?address=${deployMinaAddress}&?explorer=minaexplorer`)
+            }}
           />
         </div>
 
@@ -45,8 +78,18 @@ export default function Deploy() {
             <div>Check address balance</div>
           </div>
           <Button
-            label="Check"
-            handleClick={() => { }}
+            label="Check Balance"
+            handleClick={async () => {
+              const Berkeley = Mina.Network(
+                'https://proxy.berkeley.minaexplorer.com/graphql'
+              );
+              Mina.setActiveInstance(Berkeley);
+              const { account } = await fetchAccount({ publicKey: PublicKey.fromBase58(deployMinaAddress!) })
+
+              if (!account?.balance) {
+                alert('The balance is 0, please confirm whether you have executed the faucet claim operation!')
+              }
+            }}
           />
         </div>
 
@@ -60,7 +103,9 @@ export default function Deploy() {
           <Button
             label="Deploy"
             disable
-            handleClick={() => { }}
+            handleClick={() => {
+              
+            }}
           />
         </div>
 
