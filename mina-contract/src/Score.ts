@@ -17,7 +17,7 @@ export class Score extends SmartContract {
   @state(Field) OnChainData = State<Field>();
   @state(Field) DID = State<Field>();
   @state(Field) AI = State<Field>();
-  @state(Field) VerifyAddress = State<PublicKey>();
+  @state(Field) VerifyAddress = State<Field>();
 
   init() {
     super.init();
@@ -28,14 +28,15 @@ export class Score extends SmartContract {
     this.OnChainData.set(Field(0));
     this.DID.set(Field(0));
     this.AI.set(Field(0));
+    this.VerifyAddress.set(Field(0))
   }
 
-  @method setVerifyAddress(VerifyAddress: PublicKey) {
+  @method setVerifyAddress(VerifyAddress: Field) {
     this.VerifyAddress.getAndAssertEquals()
     this.VerifyAddress.set(VerifyAddress)
   }
 
-  @method updateScore(DeFi: Field, GameFi: Field, NFT: Field, Metaverse: Field, OnChainData: Field, DID: Field, AI: Field, Sig: Signature) {
+  @method updateScore(DeFi: Field, GameFi: Field, NFT: Field, Metaverse: Field, OnChainData: Field, DID: Field, AI: Field, Sig: Signature, Verify: PublicKey) {
 
     const currentDeFi = this.DeFi.getAndAssertEquals()
     const currentGameFi = this.GameFi.getAndAssertEquals()
@@ -46,6 +47,10 @@ export class Score extends SmartContract {
     const currentAI = this.AI.getAndAssertEquals()
     const currentVerifyAddress = this.VerifyAddress.getAndAssertEquals()
 
+    const hashVerify = Poseidon.hash(Verify.toFields())
+    hashVerify.assertEquals(currentVerifyAddress)
+
+
     const hash = Poseidon.hash([
       Poseidon.hash([Field(0), DeFi]),
       Poseidon.hash([Field(1), GameFi]),
@@ -55,7 +60,7 @@ export class Score extends SmartContract {
       Poseidon.hash([Field(5), DID]),
       Poseidon.hash([Field(6), AI]),
     ])
-    Sig.verify(currentVerifyAddress, [hash])
+    Sig.verify(Verify, [hash])
 
     this.DeFi.set(currentDeFi.add(DeFi))
     this.GameFi.set(currentGameFi.add(GameFi))
