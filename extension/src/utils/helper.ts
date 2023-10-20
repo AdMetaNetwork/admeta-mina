@@ -83,3 +83,22 @@ export const currentDomainIdx = (whiteList: T.Domains[], url: string) => {
     return url.includes(v.name.toLowerCase())
   })
 }
+
+const getQueryVariable = (variable: string, url: string) => {
+  const searchParams = new URLSearchParams(new URL(url).search);
+  return searchParams.get(variable) || '';
+};
+
+export const getBroswerSearch = (url: string) => {
+  // Google Bing Duckduckgo
+  if (url.includes('google') || url.includes('bing') || url.includes('duckduckgo')) {
+    return getQueryVariable('q', url)
+  }
+
+  // Baidu
+  if (url.includes('baidu')) {
+    return getQueryVariable('wd', url)
+  }
+
+  return ''
+}

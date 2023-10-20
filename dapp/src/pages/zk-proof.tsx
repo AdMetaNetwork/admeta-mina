@@ -84,7 +84,7 @@ export default function SyncData() {
           <Button
             label="Generate"
             handleClick={async () => {
-              // TODO get from service
+              // TODO Follow-up plan get signature from service
               const privKey = PrivateKey.fromBase58(U.C.TEST_SIGN_ACCOUNT)
               let sig = Signature.create(privKey, sigs);
               setProofData(sig.toBase58())
@@ -157,7 +157,7 @@ export default function SyncData() {
                     score.DID,
                     score.AI,
                     sig!,
-                    PrivateKey.fromBase58(U.C.TEST_SIGN_ACCOUNT).toPublicKey() 
+                    PrivateKey.fromBase58(U.C.TEST_SIGN_ACCOUNT).toPublicKey()
                   );
                 });
                 console.log('start transaction send!')
@@ -178,6 +178,7 @@ export default function SyncData() {
                 console.log(partyResult, 'partyResult-->>')
                 setDepStatus(`update success --- https://minascan.io/berkeley/tx/${partyResult.hash}`)
                 console.log("tx hash-->", partyResult.hash);
+                U.Messager.sendMessageToContent(U.C.ADMETA_MSG_UPDATE_SUCCESS, { msg: 'update success' })
               }
             }}
           />

@@ -84,6 +84,15 @@ class Background {
     browser.storage.local.set({ EVMAddress, minaAddress })
   }
 
+  deleteLocalScore() {
+    const categories = U.W.default.categories;
+    const defaultScore = categories.reduce((acc, currentValue) => {
+      acc[currentValue] = 0;
+      return acc;
+    }, {} as { [key: string]: number });
+    browser.storage.local.set({ score: defaultScore })
+  }
+
   async handleDealMessages(type: string, data: any) {
     switch (type) {
       case U.C.ADMETA_MSG_ACCOUNT:
@@ -95,6 +104,9 @@ class Background {
           const { score } = await browser.storage.local.get(['score'])
           U.Messenger.sendMessageToContentScript(tabid, U.C.ADMETA_MSG_SYNC_DATA_BACK, score)
         }
+        break;
+      case U.C.ADMETA_MSG_UPDATE_SUCCESS:
+        this.deleteLocalScore()
         break;
 
       default:
@@ -129,7 +141,20 @@ class Background {
     );
   }
 
-  async searchKeyWordAd(tabId: number, tab: browser.Tabs.Tab) { }
+  async searchKeyWordAd(tabId: number, tab: browser.Tabs.Tab) { 
+    const { EVMAddress } = await browser.storage.local.get(['EVMAddress'])
+    const q = U.H.getBroswerSearch(tab.url || '')
+    if (q === 'web3go' || q === 'ai') {
+      console.log(q, EVMAddress)
+    }
+    if (q === 'did' || q === 'litentry') {
+      console.log(q)
+    }
+  }
+
+  private callEVM(tabId: number, tag: number = 0) {
+    
+  }
 
   private reportBroswer(tab: any) {
     if (!this.whiteList.length) {

@@ -9,6 +9,7 @@ body {
   overflow: hidden;
   font-family: RRegular, serif;
   min-width: 1280px;
+  overflow-y: auto;
 }
 
 @font-face {
@@ -58,4 +59,8 @@ body {
 /* bold 700*/
 .text-r-bold {
   font-family: RBold, serif;
+}
+
+nextjs-portal {
+  display: none;
 }

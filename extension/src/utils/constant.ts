@@ -1,8 +1,8 @@
 export const WEB_TITLE = 'AdMeta x Mina'
 export const WEB_DESCRIPTION = 'AdMeta x Mina'
 
-// export const LINK_HTTP = 'https://mina.admeta.network/'
-export const LINK_HTTP = 'http://localhost:3000'
+export const LINK_HTTP = 'https://mina.admeta.network/'
+// export const LINK_HTTP = 'http://localhost:3000'
 
 export const API = 'https://api.admeta.network/'
 
@@ -12,5 +12,6 @@ export const TEST_ACCOUNT = 'frozen captain slender cat multiply small okay crui
 export const ADMETA_MSG_ACCOUNT = 'ADMETA_MSG_ACCOUNT'
 export const ADMETA_MSG_SYNC_DATA = 'ADMETA_MSG_SYNC_DATA'
 export const ADMETA_MSG_SYNC_DATA_BACK = 'ADMETA_MSG_SYNC_DATA_BACK'
+export const ADMETA_MSG_UPDATE_SUCCESS = 'ADMETA_MSG_UPDATE_SUCCESS'
 
 export const REPORTING_TIME = 1000 * 10

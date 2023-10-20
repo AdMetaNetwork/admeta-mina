@@ -29,6 +29,9 @@ class ContentScript {
       case U.C.ADMETA_MSG_SYNC_DATA_BACK:
         window.postMessage({ type: U.C.ADMETA_MSG_SYNC_DATA_BACK, data }, '*');
         break;
+      case U.C.ADMETA_MSG_UPDATE_SUCCESS:
+        U.Messenger.sendMessageToBackground(U.C.ADMETA_MSG_UPDATE_SUCCESS, data)
+        break;
 
       default:
         break;

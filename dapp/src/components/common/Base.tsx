@@ -28,7 +28,7 @@ const Base: FC<Props> = ({ tdk, children, header = true, sideNav = true, page })
       </Head>
       <div>
         {header && <Header />}
-        <div className="flex justify-start px-[6.25rem]">
+        <div className="flex justify-start px-[6.25rem] pb-[100px]">
           {sideNav && <SideNav page={page} />}
           {children}
         </div>
