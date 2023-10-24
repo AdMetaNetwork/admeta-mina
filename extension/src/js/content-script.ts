@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
 import * as U from '@/utils'
+import { pushAdCard } from './ui'
 class ContentScript {
 
   constructor() { }
@@ -31,6 +32,12 @@ class ContentScript {
         break;
       case U.C.ADMETA_MSG_UPDATE_SUCCESS:
         U.Messenger.sendMessageToBackground(U.C.ADMETA_MSG_UPDATE_SUCCESS, data)
+        break;
+      case U.C.ADMETA_MSG_AD_PUSH:
+        pushAdCard(data.message.callbackLink.includes('youtube') ? 'VIDEO' : 'PICTURE', data.message.callbackLink, data.message.metadata, data.message.id, data.address)
+        break;
+      case U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS:
+        U.Messenger.sendMessageToBackground(U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS, data)
         break;
 
       default:

@@ -1,6 +1,7 @@
 import browser from "webextension-polyfill";
 import * as U from '@/utils'
-import { ethers } from 'ethers'
+import { ethers, BigNumber } from 'ethers'
+import { ApolloClient, InMemoryCache, HttpLink, gql } from '@apollo/client';
 
 class Background {
 
@@ -84,6 +85,10 @@ class Background {
     browser.storage.local.set({ EVMAddress, minaAddress })
   }
 
+  saveDevelopAddress(deploy_address: string) {
+    browser.storage.local.set({ deploy_address })
+  }
+
   deleteLocalScore() {
     const categories = U.W.default.categories;
     const defaultScore = categories.reduce((acc, currentValue) => {
@@ -108,10 +113,19 @@ class Background {
       case U.C.ADMETA_MSG_UPDATE_SUCCESS:
         this.deleteLocalScore()
         break;
+      case U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS:
+        console.log(data, '<<<---data--->>>>')
+        this.saveDevelopAddress(data.deploy_address)
+        this.getMinaState(data.deploy_address)
+        break;
 
       default:
         break;
     }
+  }
+
+  syncMinaScore(data: any) {
+    browser.storage.local.set({ chainScore: data })
   }
 
   listenTabChange() {
@@ -141,19 +155,87 @@ class Background {
     );
   }
 
-  async searchKeyWordAd(tabId: number, tab: browser.Tabs.Tab) { 
-    const { EVMAddress } = await browser.storage.local.get(['EVMAddress'])
-    const q = U.H.getBroswerSearch(tab.url || '')
-    if (q === 'web3go' || q === 'ai') {
-      console.log(q, EVMAddress)
-    }
-    if (q === 'did' || q === 'litentry') {
-      console.log(q)
+  async searchKeyWordAd(tabId: number, tab: browser.Tabs.Tab) {
+    const q = U.H.getBroswerSearch(tab.url || '');
+
+    switch (q) {
+      case 'web3go':
+      case 'ai':
+        this.callEVM(tabId, 6);
+        break;
+      case 'did':
+      case 'litentry':
+        this.callEVM(tabId, 5);
+        break;
+      default:
+        break;
     }
   }
 
-  private callEVM(tabId: number, tag: number = 0) {
-    
+  async getMinaState(deploy_address: string) {
+    if (!deploy_address) return;
+
+    const GET_DATA = gql`
+        query {
+          account(publicKey: "${deploy_address}") {
+            zkappState
+          }
+        }
+    `;
+
+    const endpoint = 'https://proxy.berkeley.minaexplorer.com/graphql';
+
+    const client = new ApolloClient({
+      link: new HttpLink({
+        uri: endpoint,
+      }),
+      cache: new InMemoryCache(),
+    });
+
+    const { data } = await client.query({
+      query: GET_DATA,
+    });
+
+    const zkappState = data.account.zkappState.slice(0, 7);
+
+    const chainScore: { [key: string]: number } = {};
+    U.W.default.categories.forEach((category) => {
+      chainScore[category] = 0;
+    });
+
+    Object.keys(chainScore).forEach((key, index) => {
+      if (index < zkappState.length) {
+        chainScore[key] = +zkappState[index];
+      }
+    });
+
+    browser.storage.local.set({ chainScore });
+  }
+
+
+  private async callEVM(tabId: number, tag: number = 0) {
+    const { EVMAddress, chainScore } = await browser.storage.local.get(['EVMAddress', 'chainScore'])
+
+    // Score less than 100 does not match 
+    if ((tag === 5 && +chainScore.DID < 100) || (tag === 6 && +chainScore.AI < 100)) {
+      return;
+    }
+
+    const matchIndex = await this.contract?.matchAd(BigNumber.from(tag), EVMAddress)
+    console.log(matchIndex)
+    this.contract?.adInfo(matchIndex).then((b: any) => {
+      const message = {
+        callbackLink: b[6],
+        metadata: b[4],
+        id: b[0].toNumber(),
+        address: b[1]
+      }
+      U.Messenger.sendMessageToContentScript(
+        tabId,
+        U.C.ADMETA_MSG_AD_PUSH,
+        { message, address: EVMAddress }
+      );
+    })
   }
 
   private reportBroswer(tab: any) {

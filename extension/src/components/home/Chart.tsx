@@ -1,9 +1,27 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import ReactEcharts from 'echarts-for-react';
 import * as U from '@/utils'
+import browser from 'webextension-polyfill';
 
 const MyEchartsComponent = () => {
-  
+
+  const [value, setValue] = useState<string[]>([])
+
+  useEffect(() => {
+    browser.storage.local.get(['chainScore']).then(({ chainScore }) => {
+      setValue([
+        chainScore.DeFi.toString(),
+        chainScore.GameFi.toString(),
+        chainScore.NFT.toString(),
+        chainScore.Metaverse.toString(),
+        chainScore.OnChainData.toString(),
+        chainScore.DID.toString(),
+        chainScore.AI.toString()
+      ])
+    })
+  }, [])
+
+
   const getOption = () => {
     return {
       series: [
@@ -34,7 +52,7 @@ const MyEchartsComponent = () => {
           labelLine: {
             show: false
           },
-          data: U.W.default.categories.map(item => ({ name: item, value: Math.floor(Math.random() * 1000) }))
+          data: U.W.default.categories.map((item, index) => ({ name: item, value: value[index] }))
         }
       ]
     };

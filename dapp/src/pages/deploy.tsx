@@ -51,9 +51,13 @@ export default function Deploy() {
                 // localStorage.setItem('deploy_address2', zkAppPrivateKey.toBase58())
                 setDeployMinaAddress!(zkAppAddress.toBase58())
                 setDeployPrivateKey(zkAppPrivateKey.toBase58())
+
+                U.Messager.sendMessageToContent(U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS, { deploy_address: zkAppAddress.toBase58() })
               } else {
                 setDeployMinaAddress!(deploy_address)
+                U.Messager.sendMessageToContent(U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS, { deploy_address })
               }
+
 
             }}
           />

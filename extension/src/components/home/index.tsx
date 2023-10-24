@@ -8,7 +8,7 @@ const Index = () => {
     <>
       <Header />
       <Account />
-      {/* <Chart /> */}
+      <Chart />
       <Score />
     </>
   )

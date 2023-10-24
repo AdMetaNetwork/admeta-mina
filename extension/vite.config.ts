@@ -4,6 +4,7 @@ import webExtension, { readJsonFile } from "vite-plugin-web-extension";
 import path from "node:path";
 import ViteTsconfigPaths from 'vite-tsconfig-paths';
 import topLevelAwait from 'vite-plugin-top-level-await';
+import graphql from 'vite-plugin-graphql';
 
 function generateManifest() {
   const args = process.argv;
@@ -27,7 +28,8 @@ export default defineConfig({
       manifest: generateManifest,
     }),
     ViteTsconfigPaths(),
-    topLevelAwait()
+    topLevelAwait(),
+    graphql
   ],
   resolve: {
     alias: {

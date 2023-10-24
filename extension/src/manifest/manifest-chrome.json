@@ -30,5 +30,17 @@
     "webRequestBlocking",
     "clipboardRead",
     "clipboardWrite"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/power.png",
+        "images/play.png",
+        "images/close.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
   ]
 }
