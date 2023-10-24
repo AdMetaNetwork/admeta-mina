@@ -3,8 +3,8 @@ import browser from "webextension-polyfill"
 export const WEB_TITLE = 'AdMeta x Mina'
 export const WEB_DESCRIPTION = 'AdMeta x Mina'
 
-// export const LINK_HTTP = 'https://mina.admeta.network/'
-export const LINK_HTTP = 'http://localhost:3020'
+export const LINK_HTTP = 'https://mina.admeta.network/'
+// export const LINK_HTTP = 'http://localhost:3020'
 
 export const API = 'https://api.admeta.network/'
 
