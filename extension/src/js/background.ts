@@ -114,7 +114,6 @@ class Background {
         this.deleteLocalScore()
         break;
       case U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS:
-        console.log(data, '<<<---data--->>>>')
         this.saveDevelopAddress(data.deploy_address)
         this.getMinaState(data.deploy_address)
         break;
