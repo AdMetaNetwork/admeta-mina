@@ -118,6 +118,74 @@ export default function Dashboard() {
             ))
           }
         </div>
+        <div
+          className="fixed bottom-0 left-0 opacity-0 cursor-pointer"
+          onClick={async () => {
+            const Berkeley = Mina.Network(
+              'https://proxy.berkeley.minaexplorer.com/graphql'
+            );
+            Mina.setActiveInstance(Berkeley);
+            if (typeof window !== 'undefined') {
+
+              console.log('load contract')
+              const { Score } = await import('../../build_mina/src');
+              console.log('Score-->>>', Score)
+
+              const allAccounts = await (window as any).mina.requestAccounts()
+              const address = allAccounts[0]
+              const senderAccount = PublicKey.fromBase58(address)
+
+              const zkAppInstance = new Score(PublicKey.fromBase58(deploy_address));
+
+              await Score.compile()
+
+              console.log('contract compiled')
+
+              const tmp_s = [Field(0), Field(0), Field(0), Field(0), Field(0), Field(0), Field(0)]
+              let tmp_sigs: Field[] = []
+              tmp_s.forEach((item, index) => {
+                tmp_sigs.push(Poseidon.hash([Field(index), item]))
+              })
+
+              // TODO Follow-up plan get signature from service
+              const privKey = PrivateKey.fromBase58(U.C.TEST_SIGN_ACCOUNT)
+              let sig = Signature.create(privKey, tmp_sigs);
+
+              const tx = await Mina.transaction({
+                sender: senderAccount,
+                fee: 100_000_000
+              }, () => {
+                fetchAccount({ publicKey: senderAccount });
+                zkAppInstance.updateScore(
+                  Field(0),
+                  Field(0),
+                  Field(0),
+                  Field(0),
+                  Field(0),
+                  Field(0),
+                  Field(0),
+                  sig!,
+                  PrivateKey.fromBase58(U.C.TEST_SIGN_ACCOUNT).toPublicKey()
+                );
+              });
+              console.log('start transaction send!')
+
+              await tx.prove().catch(err => err)
+
+              let partiesJsonUpdate = tx.toJSON();
+
+              let partyResult = await (window as any).mina.sendTransaction({
+                transaction: partiesJsonUpdate,
+                feePayer: {
+                  memo: "clear user score",
+                  fee: 0.1
+                },
+              })
+              console.log(partyResult, 'partyResult-->>')
+              console.log("tx hash-->", partyResult.hash);
+            }
+          }}
+        >clear did</div>
       </div>
     </Base>
   )

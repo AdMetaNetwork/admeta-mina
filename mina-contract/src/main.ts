@@ -96,14 +96,35 @@ console.log('state after txn2:', score1.toString());
 
 // // ----------------------------------------------------
 
-// const txn3 = await Mina.transaction(senderAccount, () => {
-//   zkAppInstance.update(Field(81));
-// });
-// await txn3.prove();
-// await txn3.sign([senderKey]).send();
+const DeFi1 = Field(0)
+const GameFi1 = Field(0)
+const NFT1 = Field(0)
+const Metaverse1 = Field(0)
+const OnChainData1 = Field(0)
+const DID1 = Field(0)
+const AI1 = Field(0)
 
-// const num3 = zkAppInstance.num.get();
-// console.log('state after txn3:', num3.toString());
+const sig1 = Signature.create(verifyPrivateKey, [
+  Poseidon.hash([Field(0), DeFi1]),
+  Poseidon.hash([Field(1), GameFi1]),
+  Poseidon.hash([Field(2), NFT1]),
+  Poseidon.hash([Field(3), Metaverse1]),
+  Poseidon.hash([Field(4), OnChainData1]),
+  Poseidon.hash([Field(5), DID1]),
+  Poseidon.hash([Field(6), AI1]),
+])
+
+try {
+  const txn3 = await Mina.transaction(senderAccount, () => {
+    zkAppInstance.resetScore(sig1, verifyPublickKey);
+  });
+  await txn3.prove();
+  await txn3.sign([senderKey]).send();
+} catch (ex: any) {
+  console.log(ex.message);
+}
+const score3 = zkAppInstance.GameFi.get();
+console.log('state after txn3:', score3.toString());
 
 // ----------------------------------------------------
 
