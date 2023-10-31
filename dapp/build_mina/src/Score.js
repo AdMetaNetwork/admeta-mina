@@ -64,6 +64,32 @@ export class Score extends SmartContract {
         this.DID.set(currentDID.add(DID));
         this.AI.set(currentAI.add(AI));
     }
+    resetScore(Sig, Verify) {
+        this.DeFi.getAndAssertEquals();
+        this.GameFi.getAndAssertEquals();
+        this.NFT.getAndAssertEquals();
+        this.Metaverse.getAndAssertEquals();
+        this.OnChainData.getAndAssertEquals();
+        this.DID.getAndAssertEquals();
+        this.AI.getAndAssertEquals();
+        const hash = Poseidon.hash([
+            Poseidon.hash([Field(0), Field(0)]),
+            Poseidon.hash([Field(1), Field(0)]),
+            Poseidon.hash([Field(2), Field(0)]),
+            Poseidon.hash([Field(3), Field(0)]),
+            Poseidon.hash([Field(4), Field(0)]),
+            Poseidon.hash([Field(5), Field(0)]),
+            Poseidon.hash([Field(6), Field(0)]),
+        ]);
+        Sig.verify(Verify, [hash]);
+        this.DeFi.set(Field(0));
+        this.GameFi.set(Field(0));
+        this.NFT.set(Field(0));
+        this.Metaverse.set(Field(0));
+        this.OnChainData.set(Field(0));
+        this.DID.set(Field(0));
+        this.AI.set(Field(0));
+    }
 }
 __decorate([
     state(Field),
@@ -109,4 +135,10 @@ __decorate([
     __metadata("design:paramtypes", [Field, Field, Field, Field, Field, Field, Field, Signature, PublicKey]),
     __metadata("design:returntype", void 0)
 ], Score.prototype, "updateScore", null);
+__decorate([
+    method,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Signature, PublicKey]),
+    __metadata("design:returntype", void 0)
+], Score.prototype, "resetScore", null);
 //# sourceMappingURL=Score.js.map

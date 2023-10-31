@@ -14,9 +14,9 @@ export const formatAddress = (address: string | undefined | null): string => {
 export const goOrigin = async () => {
   const tabs = await browser.tabs.query({});
   const origin = new URL(C.LINK_HTTP).host;
-  
+
   const matchingTab = tabs.find(item => new URL(item.url!).host === origin);
-  
+
   if (matchingTab) {
     browser.tabs.update(matchingTab.id, { active: true });
   } else {
@@ -27,7 +27,7 @@ export const goOrigin = async () => {
 export const goOriginId = async () => {
   const tabs = await browser.tabs.query({});
   const origin = new URL(C.LINK_HTTP).host;
-  
+
   const matchingTab = tabs.find(item => new URL(item.url!).host === origin);
 
   return matchingTab ? matchingTab.id : undefined;
@@ -101,4 +101,12 @@ export const getBroswerSearch = (url: string) => {
   }
 
   return ''
+}
+
+export const getUrlParameter = (name: string) => {
+  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
+  const results = regex.exec(window.location.href);
+  if (!results) return null;
+  const parameterValue = results[2] || "";
+  return decodeURIComponent(parameterValue.replace(/\+/g, " "));
 }

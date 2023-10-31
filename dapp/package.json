@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.6",
     "connectkit": "^1.5.3",
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
+    "graphql": "^16.8.1",
     "next": "13.5.4",
     "o1js": "^0.13.1",
     "react": "^18",

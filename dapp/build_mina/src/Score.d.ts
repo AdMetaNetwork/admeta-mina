@@ -11,4 +11,5 @@ export declare class Score extends SmartContract {
     init(): void;
     setVerifyAddress(VerifyAddress: Field): void;
     updateScore(DeFi: Field, GameFi: Field, NFT: Field, Metaverse: Field, OnChainData: Field, DID: Field, AI: Field, Sig: Signature, Verify: PublicKey): void;
+    resetScore(Sig: Signature, Verify: PublicKey): void;
 }

@@ -4,6 +4,7 @@ import * as U from '@/utils'
 import { PrivateKey, Signature, Field, Poseidon, isReady, Mina, PublicKey, fetchAccount } from 'o1js'
 import useLocalStorage from "@/hooks/useLocalStorage"
 import { useEffect, useState } from "react";
+import { ApolloClient, InMemoryCache, HttpLink, gql } from '@apollo/client';
 
 export default function Dashboard() {
 
@@ -25,6 +26,7 @@ export default function Dashboard() {
       const OnChainData = await zkAppInstance.OnChainData.fetch()
       const DID = await zkAppInstance.DID.fetch()
       const AI = await zkAppInstance.AI.fetch()
+      console.log(zkAppInstance, 'zkAppInstance--->>>')
 
       setValue([
         DeFi.toString(),
@@ -156,14 +158,7 @@ export default function Dashboard() {
                 fee: 100_000_000
               }, () => {
                 fetchAccount({ publicKey: senderAccount });
-                zkAppInstance.updateScore(
-                  Field(0),
-                  Field(0),
-                  Field(0),
-                  Field(0),
-                  Field(0),
-                  Field(0),
-                  Field(0),
+                zkAppInstance.resetScore(
                   sig!,
                   PrivateKey.fromBase58(U.C.TEST_SIGN_ACCOUNT).toPublicKey()
                 );

@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import * as U from '@/utils'
-import { pushAdCard } from './ui'
+import { pushAdCard, completeLitBtn, completeWeb3GoBtn } from './ui'
 class ContentScript {
 
   constructor() { }
@@ -10,6 +10,8 @@ class ContentScript {
     this.listenMessagesFromBackground();
 
     this.listenWebPageMessages()
+
+    this.listenWebPageScrollBottom()
   }
 
   listenMessagesFromBackground() {
@@ -49,6 +51,17 @@ class ContentScript {
     window.addEventListener("message", function (msg) {
       U.Messenger.sendMessageToBackground(msg.data.type, msg.data.data)
     })
+  }
+
+  listenWebPageScrollBottom() {
+    const url = location.href
+    if (url.includes('litentry.com')) {
+      completeLitBtn()
+    }
+    if (url.includes('web3go.xyz')) {
+      completeWeb3GoBtn()
+    }
+    
   }
 
 }
