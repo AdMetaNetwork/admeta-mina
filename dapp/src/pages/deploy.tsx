@@ -230,7 +230,7 @@ export default function Deploy() {
                 setDepStatus2('request account from wallet')
 
                 const senderAccount = PublicKey.fromBase58(addree)
-                setDepStatus2('send address --- ' + addree)
+                setDepStatus2('send address --- ' + deploy_address)
 
                 const zkAppInstance = new Score(PublicKey.fromBase58(deploy_address));
 

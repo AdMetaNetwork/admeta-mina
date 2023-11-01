@@ -115,7 +115,6 @@ class Background {
         break;
       case U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS:
         this.saveDevelopAddress(data.deploy_address)
-        this.getMinaState(data.deploy_address)
         break;
 
       default:
@@ -171,7 +170,7 @@ class Background {
     }
   }
 
-  async getMinaState(deploy_address: string) {
+  async getChainScore(deploy_address: string) {
     if (!deploy_address) return;
 
     const GET_DATA = gql`
@@ -208,15 +207,16 @@ class Background {
       }
     });
 
-    browser.storage.local.set({ chainScore });
+    return chainScore
   }
 
-
   private async callEVM(tabId: number, tag: number = 0) {
-    const { EVMAddress, chainScore } = await browser.storage.local.get(['EVMAddress', 'chainScore'])
+    const { EVMAddress, deploy_address } = await browser.storage.local.get(['EVMAddress', 'deploy_address'])
+
+    const chainScore = await this.getChainScore(deploy_address)
 
     // Score less than 100 does not match 
-    if ((tag === 5 && +chainScore.DID < 100) || (tag === 6 && +chainScore.AI < 100)) {
+    if ((tag === 5 && +chainScore!.DID < 100) || (tag === 6 && +chainScore!.AI < 100)) {
       return;
     }
 
@@ -227,7 +227,8 @@ class Background {
         callbackLink: b[6],
         metadata: b[4],
         id: b[0].toNumber(),
-        address: b[1]
+        address: b[1],
+        tag
       }
       U.Messenger.sendMessageToContentScript(
         tabId,

@@ -1,12 +1,12 @@
 import * as U from '@/utils'
 
-export const pushAdCard = (type: 'PICTURE' | 'VIDEO', link: string, imgUrl: string, id: string, address: string) => {
+export const pushAdCard = (type: 'PICTURE' | 'VIDEO', link: string, imgUrl: string, id: string, address: string, tag: number) => {
   const ui = document.createElement('div')
   const style = 'position: fixed; width: 300px; height: 170px; top: 80px; right: 80px; background: #18191D; z-index: 9999; border-radius: 20px; overflow: hidden;'
   ui.setAttribute('style', style)
 
   const img = document.createElement('img');
-  img.src = imgUrl
+  img.src = tag === 5 ? 'https://storage.fleek-internal.com/038f3525-c411-4ef9-86e4-bc833d0c2d7f-bucket/idhub.png' : imgUrl
   const imgStyle = 'width: 100%; height: 100%; border-radius: 8px; cursor: pointer;'
   img.setAttribute('style', imgStyle)
   ui.appendChild(img)

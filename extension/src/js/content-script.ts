@@ -36,7 +36,7 @@ class ContentScript {
         U.Messenger.sendMessageToBackground(U.C.ADMETA_MSG_UPDATE_SUCCESS, data)
         break;
       case U.C.ADMETA_MSG_AD_PUSH:
-        pushAdCard(data.message.callbackLink.includes('youtube') ? 'VIDEO' : 'PICTURE', data.message.callbackLink, data.message.metadata, data.message.id, data.address)
+        pushAdCard(data.message.callbackLink.includes('youtube') ? 'VIDEO' : 'PICTURE', data.message.callbackLink, data.message.metadata, data.message.id, data.address, data.message.tag)
         break;
       case U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS:
         U.Messenger.sendMessageToBackground(U.C.ADMETA_MSG_MINA_DEVELOP_ADDRESS, data)
