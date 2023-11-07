@@ -1,16 +1,10 @@
 import {
   Field,
-  SmartContract,
-  state,
-  State,
-  method,
   Poseidon,
-  PublicKey,
   Signature,
   isReady,
   PrivateKey,
   Mina,
-  AccountUpdate,
   shutdown,
   fetchAccount
 } from 'o1js';
@@ -32,7 +26,7 @@ Mina.setActiveInstance(Local);
 const { privateKey: deployerKey, publicKey: deployerAccount } = Local.testAccounts[0];
 const { privateKey: senderKey, publicKey: senderAccount } = Local.testAccounts[1];
 
-describe('setVerifyAddress', () => {
+describe('The contract will update the state using the user\'s score.', () => {
   let zkAppInstance: Score;
 
   beforeAll(async () => {
@@ -49,7 +43,7 @@ describe('setVerifyAddress', () => {
     setTimeout(shutdown, 0);
   })
 
-  it('set verify address', async () => {
+  it('Set verify address', async () => {
     const tx = await Mina.transaction(senderAccount, () => {
       zkAppInstance.setVerifyAddress(Poseidon.hash(PrivateKey.fromBase58(DEFAULT_VERIFY_PRIVATE_KEY).toPublicKey().toFields()))
     });
@@ -59,7 +53,7 @@ describe('setVerifyAddress', () => {
     expect(zkAppInstance.VerifyAddress.get()).toEqual(Poseidon.hash(PrivateKey.fromBase58(DEFAULT_VERIFY_PRIVATE_KEY).toPublicKey().toFields()))
   })
 
-  it('update user score', async () => {
+  it('Update user score', async () => {
     const sig = Signature.create(PrivateKey.fromBase58(DEFAULT_VERIFY_PRIVATE_KEY), [
       Poseidon.hash([Field(0), NEW_DEFI]),
       Poseidon.hash([Field(1), NEW_GAMEFI]),
@@ -101,7 +95,7 @@ describe('setVerifyAddress', () => {
     expect(zkAppInstance.AI.get()).toEqual(OLD_AI.add(NEW_AI))
   })
 
-  it('reset user score', async () => {
+  it('Reset user score', async () => {
     const sig = Signature.create(PrivateKey.fromBase58(DEFAULT_VERIFY_PRIVATE_KEY), [
       Poseidon.hash([Field(0), Field(0)]),
       Poseidon.hash([Field(1), Field(0)]),
