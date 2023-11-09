@@ -1,6 +1,10 @@
-# Mina zkApp: Mina Contract
+# AdMeta Mina Contract
 
-This template uses TypeScript.
+The contract is primarily used to store user state scores and verify addresses. Users need to verify the address in order to successfully update their scores.
+
+- deploy contrac
+- set verify address
+- update user score
 
 ## How to build
 
@@ -20,7 +24,3 @@ npm run testw # watch mode
 ```sh
 npm run coverage
 ```
-
-## License
-
-[Apache-2.0](LICENSE)
