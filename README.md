@@ -30,7 +30,7 @@ AdMeta provides four integrated programs — Dapp Extension, EVM Contract, and M
 
 
 # Project Demo Video
-[![Demo Video](https://youtu.be/DTSoZLiz3HM "Demo Video")]
+[![Demo Video](https://img.youtube.com/vi/DTSoZLiz3HM/hqdefault.jpg)](https://www.youtube.com/watch?v=DTSoZLiz3HM)
 
 
 # License
