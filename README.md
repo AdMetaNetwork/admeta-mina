@@ -13,76 +13,92 @@ AdMeta provides four integrated programs — Dapp Extension, EVM Contract, and M
 - When searching in Chrome, the Extension evaluates the search terms. If criteria are met, it calls the Mina contract for the stored scores. Upon satisfying the score conditions, it invokes the EVM contract to align users with targeted ads.
 - Clicking an ad takes users directly to the designated ad page. Upon completing the advertiser's interactive tasks and passing verification, users receive rewards for the ad completion.
 
+# Mina Contract 
+
 # Online experience address
 [AdMeta x Mina](https://mina.admeta.network/)
 
-# Tutorial
-1. Build Mina Contract
+# AdMeta x Mina Dapp Tutorial
+
+## 1. Building the Mina Contract
+Navigate to the mina-contract directory and compile the contract:
 ```sh
 cd mina-contract
 yarn 
 yarn build
 ```
-The root directory will have a `build_mina` directory
+A `build_mina` directory will appear in the root folder after a successful build.
 
-2. Run AdMeta x Mina Dapp
-- run
+## 2. Running the Dapp
+Start the Dapp on your local server:
 ```sh
 cd dapp/
 yarn 
 yarn dev
 ```
-- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-- Copy the folder `build_main` created by mina-contract build to the root directory 
+Visit `http://localhost:3000` to view the Dapp in your browser.
+Remember to move the build_mina directory from the mina-contract build to the root directory of the Dapp.
 
-3. Install AdMeta Extension
-- Build extension
+![Home Page](./img/home-page.png)
+
+## 3. Setting Up the AdMeta Extension
+To install the extension:
 ```sh
 cd extension/
 yarn
 yarn build
 ```
-- Open chrome extension `chrome://extensions/`
-- Install with dist folder
+Load the extension in Chrome from `chrome://extensions/` using the dist folder.
 
-4. Deploy Mina Contract
-- Open dapp `http://localhost:3000`
-- Connect wallet
-![Home Page](./img/home-page.png)
-- Open deploy page
+## 4. Deploying the Mina Contract
+Access the Dapp at `http://localhost:3000`, connect your wallet, and navigate to the deployment section.
+
 ![Deploy Page](./img/deploy-page.png)
-  - Generate mina deploy address 
-  - Import private key yo your auro wallet
-  - Deploy contract need cost mina, So get token from faucet
-  - Use Auro wallet to send transaction for deploy contract
-  - Switch your mian address to set verify address, The verify address is used to verify in the contract
 
-5. Broswer whitelist domain and you will get score
-  - Broswer `uniswap.org` will add score in tag `Defi`
-  - Broswer `litentry.com` will add score in tag `DID`
-  - Broswer `web3go.xyz` will add score in tag `AI`
-  - ...
+- Generate a Mina deployment address.
+- Import your private key into your Auro wallet.
+- Obtain tokens from the faucet to cover deployment costs.
+- Use your Auro wallet to deploy the contract.
+- Set the verification address; it's crucial for authenticating transactions within the contract.
 
-6. Open your admeta extension you will watch local score change
+## 5. Earning Scores
+Earn points by visiting whitelisted domains:
+  - `uniswap.org` for the "Defi" tag.
+  - `litentry.com` for the "DID" tag.
+  - `web3go.xyz` for the "AI" tag.
+  - And more...
+
+## 6. Monitoring Score Changes
+Your local score changes will be visible within the AdMeta Extension.
+
 ![Home Page](./img/extension-home-2.png)
 
-7. Open dapp ZK-Proof page
+## 7. Generating Zero-Knowledge Proofs
+On the Dapp's ZK-Proof page, load the proof data from the extension, generate trusted ZK data, and upload your updated scores to the Mina blockchain.
+
 ![ZK Proof Page](./img/zk-proof-page.png)
   - Load proof data from extension
   - Generate zk trusted data
   - Upload updated scores to the Mina blockchain
 
-8. Open dapp Dashboard page
+## 8. Checking the Dashboard
+The Dashboard page will reflect your updated score.
+
 ![Dashboard Page](./img/dashboard-page.png)
   - score updated!
 
-9. Open google page and search ai
+## 9. Engaging with Ads
+Search for "ai" on Google and interact with the ads that appear.
+
 ![Show Ad](./img/show-ad-card.png)
 
-10. Click the ad card and enter task page
+## 10. Completing Ad Tasks
+Click on the ad card to go to the task page and complete the advertiser's interactive task.
+
 ![Ad Task](./img/ad-task.png)
 
-11. Complete ad task
+## 11. Claiming Rewards
+After completing the task, verify the completion and claim your rewards through the wallet connection.
   - Connect wallet
   - Go task link
   - Verify ad complete
@@ -94,13 +110,18 @@ yarn build
 
 # Dapp Screenshot
 ![Home Page](./img/home-page.png)
+
 ![Deploy Page](./img/deploy-page.png)
+
 ![ZK Proof Page](./img/zk-proof-page.png)
+
 ![Dashboard Page](./img/dashboard-page.png)
 
 # Extension Screenshot
 ![Agree Page](./img/extension-agree.png)
+
 ![Home Page](./img/extension-home-1.png)
+
 ![Home Page](./img/extension-home-2.png)
 
 
