@@ -27,7 +27,7 @@ The address where the contract was successfully deployed on the Mina testnet Ber
 
 
 # Software Engineering Architecture Diagram
-![AdMeta Product](./img/admeta_mina.jpg)
+![AdMeta Product](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/admeta_mina.jpg?raw=true)
 
 # AdMeta x Mina Dapp Tutorial
 
@@ -50,7 +50,7 @@ yarn dev
 Visit `http://localhost:3000` to view the Dapp in your browser.
 Remember to move the build_mina directory from the mina-contract build to the root directory of the Dapp.
 
-![Home Page](./img/home-page.png)
+![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/home-page.png?raw=true)
 
 ## 3. Setting Up the AdMeta Extension
 To install the extension:
@@ -64,7 +64,7 @@ Load the extension in Chrome from `chrome://extensions/` using the dist folder.
 ## 4. Deploying the Mina Contract
 Access the Dapp at `http://localhost:3000`, connect your wallet, and navigate to the deployment section.
 
-![Deploy Page](./img/deploy-page.png)
+![Deploy Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/deploy-page.png?raw=true)
 
 - Generate a Mina deployment address.
 - Import your private key into your Auro wallet.
@@ -82,12 +82,12 @@ Earn points by visiting whitelisted domains:
 ## 6. Monitoring Score Changes
 Your local score changes will be visible within the AdMeta Extension.
 
-![Home Page](./img/extension-home-2.png)
+![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-home-2.png?raw=true)
 
 ## 7. Generating Zero-Knowledge Proofs
 On the Dapp's ZK-Proof page, load the proof data from the extension, generate trusted ZK data, and upload your updated scores to the Mina blockchain.
 
-![ZK Proof Page](./img/zk-proof-page.png)
+![ZK Proof Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/zk-proof-page.png?raw=true)
   - Load proof data from extension
   - Generate zk trusted data
   - Upload updated scores to the Mina blockchain
@@ -95,18 +95,18 @@ On the Dapp's ZK-Proof page, load the proof data from the extension, generate tr
 ## 8. Checking the Dashboard
 The Dashboard page will reflect your updated score.
 
-![Dashboard Page](./img/dashboard-page.png)
+![Dashboard Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/dashboard-page.png?raw=true)
   - score updated!
 
 ## 9. Engaging with Ads
 Search for "ai" on Google and interact with the ads that appear.
 
-![Show Ad](./img/show-ad-card.png)
+![Show Ad](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/show-ad-card.png?raw=true)
 
 ## 10. Completing Ad Tasks
 Click on the ad card to go to the task page and complete the advertiser's interactive task.
 
-![Ad Task](./img/ad-task.png)
+![Ad Task](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/ad-task.png?raw=true)
 
 ## 11. Claiming Rewards
 After completing the task, verify the completion and claim your rewards through the wallet connection.
@@ -141,20 +141,20 @@ Execute rigorous end-to-end testing focusing on the system's privacy-preserving 
 Achieve a major technical and product development by facilitating cross-chain interactions between Mina and EVM blockchains, which enhances the advertising model with complex score calculations, precise ad matching, and a comprehensive reward system.
 
 # Dapp Screenshot
-![Home Page](./img/home-page.png)
+![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/home-page.png?raw=true)
 
-![Deploy Page](./img/deploy-page.png)
+![Deploy Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/deploy-page.png?raw=true)
 
-![ZK Proof Page](./img/zk-proof-page.png)
+![ZK Proof Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/zk-proof-page.png?raw=true)
 
-![Dashboard Page](./img/dashboard-page.png)
+![Dashboard Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/dashboard-page.png?raw=true)
 
 # Extension Screenshot
-![Agree Page](./img/extension-agree.png)
+![Agree Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-agree.png?raw=true)
 
-![Home Page](./img/extension-home-1.png)
+![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-home-1.png?raw=true)
 
-![Home Page](./img/extension-home-2.png)
+![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-home-2.png?raw=true)
 
 # Future
 Mina bridge to EVM
