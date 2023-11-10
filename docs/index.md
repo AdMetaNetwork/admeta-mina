@@ -2,7 +2,7 @@
 
 ### [Overview](./Introduction.md)
 
-### [Why Mina](./DeployInfo.md)
+### [Why Mina](./WhyMina.md)
 
 ### [Software Architecture](./Architecture.md)
 
