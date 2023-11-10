@@ -2,6 +2,8 @@
 
 ### [Overview](./Introduction.md)
 
+### [Why Mina](./DeployInfo.md)
+
 ### [Software Architecture](./Architecture.md)
 
 ### [Get Started](./Tutorial.md)

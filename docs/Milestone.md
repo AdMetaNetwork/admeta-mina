@@ -1,4 +1,4 @@
-# Archived Milestones
+# Achieved Milestones
 
 Milestone 0: Design a Domain Model with a Focus on Mina zk Privacy.
 Develop a privacy-focused model for AdMeta by leveraging Mina’s zero-knowledge proofs for secure and confidential score storage.

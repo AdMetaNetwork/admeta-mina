@@ -1,6 +1,7 @@
 # AdMeta Dapp Tutorial
 
 TL;DR The following steps walk you through the whole process of how AdMeta works together with Mina Berkeley testnet and Ethereum Testnet, and it requires you to have both wallets from these two testnets and sufficient balances. If you just want to understand how it works, this video demonstrates it in a clear way:
+
 [![Demo Video](https://img.youtube.com/vi/DTSoZLiz3HM/hqdefault.jpg)](https://www.youtube.com/watch?v=DTSoZLiz3HM)
 
 ## 1. Running the Dapp
