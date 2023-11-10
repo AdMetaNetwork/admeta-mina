@@ -13,7 +13,10 @@ AdMeta provides four integrated programs — Dapp Extension, EVM Contract, and M
 - When searching in Chrome, the Extension evaluates the search terms. If criteria are met, it calls the Mina contract for the stored scores. Upon satisfying the score conditions, it invokes the EVM contract to align users with targeted ads.
 - Clicking an ad takes users directly to the designated ad page. Upon completing the advertiser's interactive tasks and passing verification, users receive rewards for the ad completion.
 
-# Mina Contract 
+# Mina Contract Deployed
+The address where the contract was successfully deployed on the Mina testnet Berkeley: `B62qjzGGBGanxd64yt1HANGUsoHuAMSyJVEyD3uuJh8BomrLdaWfeYh`
+
+[MinaScan](https://mina.admeta.network/)
 
 # Online experience address
 [AdMeta x Mina](https://mina.admeta.network/)
