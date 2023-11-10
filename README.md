@@ -26,6 +26,9 @@ The address where the contract was successfully deployed on the Mina testnet Ber
 [![Demo Video](https://img.youtube.com/vi/DTSoZLiz3HM/hqdefault.jpg)](https://www.youtube.com/watch?v=DTSoZLiz3HM)
 
 
+# Software Engineering Architecture Diagram
+![AdMeta Product](./img/admeta_mina.jpg)
+
 # AdMeta x Mina Dapp Tutorial
 
 ## 1. Building the Mina Contract
@@ -136,9 +139,6 @@ Execute rigorous end-to-end testing focusing on the system's privacy-preserving 
 
 - Bonus Milestone: Cross-Chain Interaction and Advanced Advertising Mechanics.
 Achieve a major technical and product development by facilitating cross-chain interactions between Mina and EVM blockchains, which enhances the advertising model with complex score calculations, precise ad matching, and a comprehensive reward system.
-
-# Project Chart
-![AdMeta Product](./img/admeta_mina.jpg)
 
 # Dapp Screenshot
 ![Home Page](./img/home-page.png)
