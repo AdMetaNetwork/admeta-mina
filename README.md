@@ -16,7 +16,7 @@ AdMeta provides four integrated programs — Dapp Extension, EVM Contract, and M
 # Mina Contract Deployed
 The address where the contract was successfully deployed on the Mina testnet Berkeley: `B62qjzGGBGanxd64yt1HANGUsoHuAMSyJVEyD3uuJh8BomrLdaWfeYh`
 
-[MinaScan](https://mina.admeta.network/)
+[MinaScan](https://minascan.io/berkeley/account/B62qjzGGBGanxd64yt1HANGUsoHuAMSyJVEyD3uuJh8BomrLdaWfeYh/zkApp?type=zk-acc)
 
 # Online experience address
 [AdMeta x Mina](https://mina.admeta.network/)
