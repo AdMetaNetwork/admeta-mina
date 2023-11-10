@@ -1,132 +1,23 @@
 # AdMeta x Mina
-AdMeta emphasizes user privacy, seamlessly integrating Mina's discreet user tagging with EVM's ad publishing, and rewards engagement while maintaining data integrity across platforms.
 
-# Project Introduction
-AdMeta provides four integrated programs — Dapp Extension, EVM Contract, and Mina Contract — to establish a complete closed-loop project:
+This repo contains the AdMeta products implementation with Mina integrated. For details please refer to the [documentation pages](https://admetanetwork.github.io/admeta-mina/)
 
-- Users install the AdMeta Extension and consent to the agreement.
-- This leads to an automatic redirection to the Dapp, where linking Metamask and Auro wallets enables the homepage display within the Extension.
-- As users navigate whitelisted websites, the Extension calculates local scores based on their activities.
-- To update scores on Mina, users must first deploy a Mina contract. Successful deployment is followed by setting a verification address provided by AdMeta.
-- For updating scores on Mina, users must load data from the Extension, sign it using the private key of the verification address after hashing, and then invoke the Mina contract.
-- The Mina contract utilizes state as a label to store user scores. Score updates require verification through the verification address to ensure success.
-- When searching in Chrome, the Extension evaluates the search terms. If criteria are met, it calls the Mina contract for the stored scores. Upon satisfying the score conditions, it invokes the EVM contract to align users with targeted ads.
-- Clicking an ad takes users directly to the designated ad page. Upon completing the advertiser's interactive tasks and passing verification, users receive rewards for the ad completion.
+# Mina Contract Deployment
 
-# Mina Contract Deployed
 The address where the contract was successfully deployed on the Mina testnet Berkeley: `B62qjzGGBGanxd64yt1HANGUsoHuAMSyJVEyD3uuJh8BomrLdaWfeYh`
 
 [MinaScan](https://minascan.io/berkeley/account/B62qjzGGBGanxd64yt1HANGUsoHuAMSyJVEyD3uuJh8BomrLdaWfeYh/zkApp?type=zk-acc)
 
-# Online experience address
-[AdMeta x Mina](https://mina.admeta.network/)
+# WebApp Deployment
 
+https://mina.admeta.network/
 
-# Project Video
+# Demo Video
+
 [![Demo Video](https://img.youtube.com/vi/DTSoZLiz3HM/hqdefault.jpg)](https://www.youtube.com/watch?v=DTSoZLiz3HM)
 
-
-# Software Engineering Architecture Diagram
-![AdMeta Product](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/admeta_mina.jpg?raw=true)
-
-# AdMeta x Mina Dapp Tutorial
-
-## 1. Running the Dapp
-Start the Dapp on your local server:
-Visit `https://mina.admeta.network/` to view the Dapp in your browser.
-Remember to move the build_mina directory from the mina-contract build to the root directory of the Dapp.
-
-![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/home-page.png?raw=true)
-
-## 2. Setting Up the AdMeta Extension
-To install the extension:
-```sh
-cd extension/
-yarn
-yarn build
-```
-Load the extension in Chrome from `chrome://extensions/` using the dist folder.
-
-## 3. Deploying the Mina Contract
-Access the Dapp at `https://mina.admeta.network/`, connect your wallet, and navigate to the deployment section.
-
-![Deploy Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/deploy-page.png?raw=true)
-
-- Generate a Mina deployment address.
-- Import your private key into your Auro wallet.
-- Obtain tokens from the faucet to cover deployment costs.
-- Use your Auro wallet to deploy the contract.
-- Set the verification address; it's crucial for authenticating transactions within the contract.
-
-## 4. Earning Scores
-Earn points by visiting whitelisted domains:
-  - `uniswap.org` for the "Defi" tag.
-  - `litentry.com` for the "DID" tag.
-  - `web3go.xyz` for the "AI" tag.
-  - And more...
-
-## 5. Monitoring Score Changes
-Your local score changes will be visible within the AdMeta Extension.
-
-![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-home-2.png?raw=true)
-
-## 6. Generating Zero-Knowledge Proofs
-On the Dapp's ZK-Proof page, load the proof data from the extension, generate trusted ZK data, and upload your updated scores to the Mina blockchain.
-
-![ZK Proof Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/zk-proof-page.png?raw=true)
-  - Load proof data from extension
-  - Generate zk trusted data
-  - Upload updated scores to the Mina blockchain
-
-## 7. Checking the Dashboard
-The Dashboard page will reflect your updated score.
-
-![Dashboard Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/dashboard-page.png?raw=true)
-  - score updated!
-
-## 8. Engaging with Ads
-Search for "ai" on Google and interact with the ads that appear.
-
-![Show Ad](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/show-ad-card.png?raw=true)
-
-## 9. Completing Ad Tasks
-Click on the ad card to go to the task page and complete the advertiser's interactive task.
-
-![Ad Task](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/ad-task.png?raw=true)
-
-## 10. Claiming Rewards
-After completing the task, verify the completion and claim your rewards through the wallet connection.
-  - Connect wallet
-  - Go task link
-  - Verify ad complete
-  - Claim rewards
-
-# Milestone
-- Milestone 0: Design a Domain Model with a Focus on Mina zk Privacy.
-- Develop a privacy-focused domain model leveraging Mina's zero-knowledge proofs for secure and confidential score storage.
-
-- Milestone 1: Build a Mina zk Privacy Chain Contract for Score Management.
-Create a Mina contract for managing user scores, ensuring privacy and security through zero-knowledge proofs.
-
-- Milestone 2: Develop and Integrate Unit Tests for the Mina Contract.
-Ensure the integrity and functionality of privacy features and score handling through comprehensive unit testing of the Mina contract.
-
-- Milestone 3: Integrate EVM Contract for Ad Storage and Matching.
-Incorporate EVM Contracts for storing advertisements and executing ad matching based on user scores from the Mina blockchain.
-
-- Milestone 4: Implement Ad Interaction Workflow with Reward Mechanism.
-Develop a workflow where users interact with matched ads and complete tasks, receiving rewards processed through EVM Contracts.
-
-- Milestone 5: Document the Privacy-Centric System and Ad Matching Logic.
-Produce extensive documentation detailing the Mina zk privacy contract, EVM ad matching process, and the entire system workflow.
-
-- Milestone 6: Conduct End-to-End Testing Emphasizing Privacy and Rewards.
-Execute rigorous end-to-end testing focusing on the system's privacy-preserving features and the EVM contract's reward distribution mechanisms.
-
-- Bonus Milestone: Cross-Chain Interaction and Advanced Advertising Mechanics.
-Achieve a major technical and product development by facilitating cross-chain interactions between Mina and EVM blockchains, which enhances the advertising model with complex score calculations, precise ad matching, and a comprehensive reward system.
-
 # Dapp Screenshot
+
 ![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/home-page.png?raw=true)
 
 ![Deploy Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/deploy-page.png?raw=true)
@@ -136,14 +27,18 @@ Achieve a major technical and product development by facilitating cross-chain in
 ![Dashboard Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/dashboard-page.png?raw=true)
 
 # Extension Screenshot
-![Agree Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-agree.png?raw=true)
+
+![Agreement Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-agree.png?raw=true)
 
 ![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-home-1.png?raw=true)
 
 ![Home Page](https://github.com/AdMetaNetwork/admeta-mina/blob/main/img/extension-home-2.png?raw=true)
 
-# Future
-Mina bridge to EVM
+# Future Works
+
+- EVM bridges integration
+- tbd
 
 # License
+
 Apache 2.0
