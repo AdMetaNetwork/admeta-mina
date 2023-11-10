@@ -1,4 +1,4 @@
-## AdMeta Documentation
+## AdMeta Mina Navigator Documentation
 
 ### [Introduction](./Introduction.md)
 ### [Tutorial](./Tutorial.md)
