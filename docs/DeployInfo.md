@@ -6,7 +6,7 @@ The address where the contract was successfully deployed on the Mina testnet Ber
 
 # WebApp Deployment Address
 
-https://mina.admeta.network/
+[https://mina.admeta.network/](https://mina.admeta.network/)
 
 # Demo Video
 
